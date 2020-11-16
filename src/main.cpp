@@ -27,24 +27,24 @@
     cout << "A difference of: " << to_simple_string(td) << endl;
 
     //eastern timezone is utc-5
-    typedef boost::date_time::local_adjustor<ptime, -5, us_dst> us_eastern;
+    typedef boost::date_time::local_adjustor<ptime, -5, us_dst> us_vermont;
 
     ptime t1(date(2020,Dec,31), hours(19)); //5 hours b/f midnight Vermont time
 
     cout << "\nUTC <--> Vermont while DST is NOT active (5 hours)" << endl;
 
-    ptime t2 =  us_eastern::local_to_utc(t1);
+    ptime t2 =  us_vermont::local_to_utc(t1);
     cout << to_simple_string(t1) << " in Vermont is " << to_simple_string(t2) << " UTC time "<< endl;
 
-    ptime t3 = us_eastern::utc_to_local(t2);//back should be the same
+    ptime t3 = us_vermont::utc_to_local(t2);//back should be the same
     cout << to_simple_string(t2) << " UTC is " << to_simple_string(t3) << " Vermont time " << "\n\n";
 
     ptime t4(date(2021,May,31), hours(20)); //4 hours b/f midnight NY time
     cout << "UTC <--> Vermont while DST is active (4 hours)" << endl;
-    ptime t5 = us_eastern::local_to_utc(t4);
+    ptime t5 = us_vermont::local_to_utc(t4);
     cout << to_simple_string(t4) << " in Vermont is " << to_simple_string(t5) << " UTC time " << endl;
 
-    ptime t6 = us_eastern::utc_to_local(t5);
+    ptime t6 = us_vermont::utc_to_local(t5);
     cout << to_simple_string(t5) << " UTC is " << to_simple_string(t6) << " Vermont time " << "\n" << endl;
 
     //California timezone is utc-8 with no dst
